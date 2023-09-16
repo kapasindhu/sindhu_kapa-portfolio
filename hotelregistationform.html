@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Registation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <style>
+        #custom{
+            display: grid;
+            grid-template-columns: 6fr 6fr;
+        }
+        #custom dt{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 200px;
+        }
+        #custom dt{
+            display: inline;
+            justify-content: center;
+            align-items: center;
+            margin-left: 300px;
+            border-bottom: 1rem;
+
+        }
+
+        
+    </style>
+    <script type="text/javascript">
+        
+        function checkBalance(){  
+            document.getElementById("cname").innerHTML=document.getElementById("customername").value;
+            document.getElementById("cdate").innerHTML=document.getElementById("cidate").value;
+            document.getElementById("days").innerHTML=document.getElementById("tndays").value;
+            document.getElementById("persons").innerHTML=document.getElementById("tnpersons").value;
+
+            var roomtype=""
+            var cost=0;
+            var balanceamount=0;
+            var nodays=document.getElementById("tndays").value;
+            
+            var deluxradio= document.getElementById("delux");
+            var suiteradio=document.getElementById("suite");
+
+            if(deluxradio.checked){
+                roomtype=deluxradio.value;
+                cost=2500;
+                balanceamount=cost*nodays;
+                document.getElementById("rtype").innerHTML = roomtype;
+                
+                
+            }
+            if(suiteradio.checked){
+                roomtype=suiteradio.value;
+                cost=4000;
+                balanceamount=cost*nodays;
+                document.getElementById("rtype").innerHTML = roomtype;
+                
+            }
+
+            var aminis="";
+            var aminicost=0;
+
+            var accheckbox=document.getElementById("ac");
+            var lockercheckbox=document.getElementById("locker");
+
+            if(accheckbox.checked){
+                aminis +=accheckbox.value + "<br>";
+                document.getElementById("amenities").innerHTML = aminis;
+                aminicost =1000;
+                balanceamount+=aminicost;
+                
+                
+            }
+            if(lockercheckbox.checked){
+                aminis +=lockercheckbox.value + "<br>";
+                aminicost=300;
+                balanceamount+=aminicost;
+                document.getElementById("amenities").innerHTML = aminis;
+               
+               
+            }
+            var nopersons=document.getElementById("tnpersons").value;
+            if(nopersons>2){
+                balanceamount+=(nopersons-2)*1000;
+            }
+            
+            var advanceamount=document.getElementById("admount").value;
+            balanceamount=balanceamount-advanceamount;
+            
+            
+            document.getElementById("aamount").innerHTML=document.getElementById("admount").value;
+            document.getElementById("bamount").innerHTML = balanceamount;
+
+        
+
+        }
+
+    </script>
+
+
+
+
+
+
+
+
+</head>
+<body class="container-fluid">
+    <div style="border: 2px solid black; width: 100%; height: 40px; font-weight: bold;" class="d-flex justify-content-center align-content-center"><h4>Hotel Registation Form</h4></div>
+    <div class=" d-flex justify-content-center align-content-center bg-black text-white m-1"><h4>Customer Info</h4></div>
+    <div class=" row justify-content-center ms-1 me-1" style="border: 2px solid black; margin-top: 4px;">
+        <div class="col">
+            <dl >
+                <dt class="mb-2">customer name</dt>
+                <dt class="mb-2">check in date</dt>
+                <dt class="mb-2" >Total No of days</dt>
+                <dt class="mb-2">Total No of persons</dt>
+            </dl>
+        </div>
+        <div class="col">
+            <dl>
+            <dt class="mb-1 mt-1" ><input type="textbox" id="customername">text</dt>
+            <dt class="mb-1 " ><input type="textbox" id="cidate">text</dt>
+            <dt class="mb-1 " ><input type="textbox"  id="tndays">Number</dt>
+            <dt class="mb-1 " ><input type="textbox" id="tnpersons">Number</dt>
+            </dl>
+        </div>
+    </div>
+    <div class=" d-flex justify-content-center align-content-center bg-black text-white m-1"><h4>Select Room Type</h4></div>
+    <div class="d-flex justify-content-around align-content-around fs-2 fw-bold" style="border: 2px solid black; margin-top: 4px;">
+        <div >
+            <img  height="130px" width="130px" class=" border-1 rounded-3 ">
+            <h5 ><input type="radio"  id="delux" value="delux room" name="room" class="form-check-input">Delux Room</h5>
+        </div>
+        <div>
+            <img class="border circle" height="130px" width="130px">
+            <h5 ><input type="radio" id="suite" value="Suite Room" name="room" class="form-check-input">Suite Room</h5>
+
+        </div>
+    </div>
+    <div class=" d-flex justify-content-center align-content-center bg-black text-white m-1"><h4>Select Animities</h4></div>
+    <div class="d-flex justify-content-around align-content-around fs-2 fw-bold" style="border: 2px solid black; margin-top: 4px;">
+        <div >
+            <img  height="130px" width="130px" class="border-dark">
+            <h5 style="font-weight: bold;"><input type="checkbox" id="ac" value="A/C" class="form-check-input">A/C</h5>
+        </div>
+        <div>
+            <img class="border circle" height="130px" width="130px">
+            <h5 style="font-weight: bold;"><input type="checkbox" id="locker" value="LOCKER" class="form-check-input">Locker</h5>
+
+        </div>
+    </div>
+    <div class=" d-flex justify-content-center align-content-center bg-black text-white m-1" ><h4>Advance Amount</h4></div>
+    <div class="d-flex justify-content-center " style="border: 2px solid black;">
+        <h4 class="fw-bold me-4">Advance Amount</h4>
+        <input type="textbox" id="admount" class="m-1 "></input>
+
+    </div>
+    <div class=" d-flex justify-content-center align-content-center ">
+        <button class="bg-black text-white  m-2 rounded radius m-1" onclick="checkBalance()" ><h4 class="m-2">Register</h4></button>
+    </div>
+
+    <div  class="d-flex justify-content-around" style="border: 2px solid black; height: 500px; width: 100%;">
+        <dl id="custom">
+            <dt>customer name</dt>
+            <dd id="cname"></dd>
+            <dt>check in date</dt>
+            <dd id="cdate"></dd>
+            <dt>total no days</dt>
+            <dd id="days"></dd>
+            <dt>total no persons</dt>
+            <dd id="persons"></dd>
+            <dt>room type</dt>
+            <dd id="rtype"></dd>
+            <dt>amenities</dt>
+            <dd id="amenities"></dd>
+            <dt>advanced amount</dt>
+            <dd id="aamount"></dd>
+            <dt>balanced amount</dt>
+            <dd id="bamount"></dd>
+        </dl>
+    </div>
+
+    <script src="../../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</body>
+</html>
